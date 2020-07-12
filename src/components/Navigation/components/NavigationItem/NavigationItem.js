@@ -1,0 +1,70 @@
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles';
+import { useSpring, animated } from 'react-spring'
+
+const styles = (theme) => {
+
+    return {
+        menuButton: {
+            position: 'relative'
+        },
+        icon: {
+            padding: '14px',
+            zIndex: 5
+        },
+        label: {
+            color: '#fff',
+            backgroundColor: '#111',
+            boxShadow: '0px 0px 15px black',
+            fontFamily: 'acumin-pro, sans-serif',
+            fontSize: '1em',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            opacity: 0,
+            padding: '4px',
+            paddingRight: '14px',
+            paddingLeft: '10px',
+            position: 'absolute',
+            textAlign: 'right',
+            top: 11,
+            whiteSpace: 'nowrap',
+            zIndex: -1
+        },
+        textContainer: {
+            whiteSpace: 'wrap',
+            width: 1
+        }
+    }
+};
+
+const NavigationItem = ({classes, label, icon, selected}) => {
+
+    const [{ left, opacity, color }, setTransition] = useSpring(() => ({ 
+        left: -100, 
+        opacity: 0, 
+        color: '#777',
+        config: { mass: 4, tension: 2200, friction: 200 }
+    }));
+    const MenuIcon = icon;
+
+    return (
+        <div 
+            onMouseEnter={() => setTransition({ left: 50, opacity: 1, color: "#fff" })}
+            onMouseLeave={() => setTransition({ left: -100, opacity: 0, color: "#777" })}
+            className={classes.menuButton}
+            aria-label={label}
+        >
+            <animated.span style={{color: selected ? '#fff' : color}}>
+                <MenuIcon className={classes.icon}/>
+            </animated.span> 
+            <animated.div 
+                style={{ left: left, opacity: opacity }}
+                className={classes.label}
+            >
+                {label}
+            </animated.div>
+        </div>
+    )
+}
+
+export default withStyles(styles)(NavigationItem);

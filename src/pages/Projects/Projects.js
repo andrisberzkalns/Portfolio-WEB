@@ -1,0 +1,63 @@
+import React, { useContext } from 'react';
+import { Locale, getLocale, LocaleContext } from '../../contexts/localization/LocaleProvider';
+import { withStyles } from '@material-ui/core/styles';
+
+import ProjectCard from './Components/ProjectCard';
+import Grid from '@material-ui/core/Grid';
+import projects from '../../variables/projects';
+
+const styles = (theme) => ({
+    container: {
+        // position: 'relative',
+        paddingTop: '60px',
+        paddingBottom: '60px',
+        backgroundColor: 'rgb(30,30,30)',
+        minHeight: 'calc(100vh - 120px)'
+    }
+});
+
+const Projects = ({classes}) => {
+
+    const { language, } = useContext(LocaleContext);
+
+    return (
+        <div className={classes.container}>
+            <div><Locale string={"experience.work.text"}/></div>
+            <Grid 
+                container 
+                spacing={0}
+                justify="center"
+                alignItems="center"
+            >
+                {
+                    projects.map((project) => (
+                        <Grid 
+                            container 
+                            item 
+                            spacing={0}
+                            xs={12}
+                            sm={6}
+                            md={6}
+                            lg={4}
+                            xl={3}
+
+                            key={project.title}
+                            justify="center"
+                            alignItems="center"
+                        >
+                            <ProjectCard
+                                details={{
+                                    ...project,
+                                    description: getLocale(language, project.description),
+                                }}
+                            >
+                            </ProjectCard>
+                        </Grid>
+                    ))
+                }
+            </Grid>
+        </div>
+    )
+}
+
+export default withStyles(styles)(Projects);

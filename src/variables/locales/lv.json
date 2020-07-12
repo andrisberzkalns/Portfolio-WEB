@@ -1,0 +1,25 @@
+{
+    "btn.visitSite": "Apmeklēt vietni",
+    "navigation.home": "Sākumlapa",
+    "navigation.work": "Darba pieredze",
+    "navigation.contact": "Kontakti",
+    "navigation.projects": "Projekti",
+    "navigation.education": "Izglītība",
+    "home.name": "Andris Bērzkalns",
+    "home.title": "Full-stack tīmekļa izstrādātājs",
+    "home.description": "Es esmu Javascript izstrādātājs, kas specializējā ReactJS front-end un Meteor back-end lietotņu izstrādē. >2 gadu profesionāla darba pieredze un pieredze freelance projektu izstrādē. Man patīk arī datorgrafiku izstrāde darbā ar dažādām Adobe programmatūrām.",
+    "home.btn.contact": "Sazinies ar mani",
+    "projects.jdkmarupe.description": "Projekts tika izstrādāts pamatā ar PHP bibliotēku Laravel un Blade šablonu bibliotēku. Vietne satur publiski pieejamu saturu un admin paneli saturu pārvaldībai.",
+    "projects.aribabox.description": "Kokapstrādes e-komercijas mājaslapa, kas tirgo DXF failus. Projekta ietvaros tika izstrādāta mājaslapa, pielietoti e-pastu marketinga rīki un izstrādāts salikšanas instrukciju ģenerēšanas rīks.",
+    "projects.portfolio.description": "Šī vietne tika izstrādāta, lai demonstrētu iepriekšējo darba pieredzi un izstrādātos projektus.",
+    "contact.title": "Vēlies sadarboties?",
+    "contact.text": "Sazinies ar mani! Gaidīšu ziņu!",
+    
+    "education.lu.title": "Latvijas Universitāte",
+    "education.lu.subtitle": "Dabaszinātņu bakalaura grāds datorzinātnēs",
+    "education.lu.year": "2016-2020",
+    "education.lu.description": "Lorem ipsum",
+    "education.mvsk.title": "Mārupes Vidusskola",
+    "education.mvsk.year": "2016",
+    "education.mvsk.description": "Lorem ipsum"
+}

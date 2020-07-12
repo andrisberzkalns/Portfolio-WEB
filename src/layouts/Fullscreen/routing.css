@@ -1,0 +1,29 @@
+.container {
+    position: fixed;
+}
+  
+.page {
+    position: fixed;
+    transition: transform 200ms ease-in-out;
+}
+  
+.page-enter {
+    /* transform: scale(0); */
+    transform: translateY(-100vh);
+}
+  
+.page-enter-active {
+    /* transform: scale(1); */
+    transform: translateY(0);
+}
+  
+.page-exit {
+    /* transform: scale(1); */
+    transform: translateY(0);
+}
+  
+.page-exit-active {
+    /* transform: scale(0); */
+    transform: translateY(100vh);
+}
+  

@@ -1,11 +1,20 @@
-.device-orientation-container {
-    width: 1000px;
-    height: 600px;
-    background-color: darkgrey;
+body{
+    margin:0;
+    padding:0;
 }
 
-.device-orientation-object {
-    width: 100px;
-    height: 100px;
-    background-color: red;
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-moz-selection { /* Code for Firefox */
+    color: white;
+    background: #00ff00;
+    // background: #ff00ff;
+}
+
+::selection {
+    color: white;
+    background: #00ff00;
+    // background: #ff00ff;
 }
