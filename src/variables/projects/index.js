@@ -26,5 +26,12 @@ export default [
         subheader: <Locale string={"projects.portfolio.subheader"}/>,
         description: "projects.portfolio.description",
         keywords: ["React (JS)"]
+    },
+    {
+        thumbnailPath: "/img/portfolio.jpg",
+        title: "Bakalaurs",
+        subheader: <Locale string={"projects.bakalaurs.subheader"}/>,
+        description: "projects.bakalaurs.description",
+        keywords: ["React (JS)", "Keras", "Tensorflow"]
     }
 ]

@@ -1,13 +1,11 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Locale, LocaleContext } from '../../contexts/localization/LocaleProvider';
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Logo from './Components/Logo';
-import { useSpring, animated } from 'react-spring';
-import { useDrag } from 'react-use-gesture';
 
 const styles = (theme) => {
 
@@ -105,7 +103,6 @@ const styles = (theme) => {
 
 const Home = ({classes}) => {
 
-    let location = useLocation();
     const { language, } = useContext(LocaleContext);
     
     return (

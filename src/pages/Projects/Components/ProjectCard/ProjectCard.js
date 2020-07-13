@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { useSpring, animated } from 'react-spring'
 import Button from '@material-ui/core/Button';
@@ -89,15 +89,6 @@ const styles = (theme) => ({
     }
   }
 });
-
-const STATUS = {
-  STILL: "still",
-  GOING_UP: "up",
-  GOING_DOWN: "down"
-};
-
-const trans = status =>
-  status === STATUS.STILL ? 0 : status === STATUS.GOING_UP ? 1000 : 100;
 
 const ProjectCard = ({classes, details}) => {
 

@@ -1,18 +1,14 @@
 import React, { useContext } from 'react'
-import {
-    useLocation,
-    Route,
-    Redirect
-  } from "react-router-dom";
-import { LocaleContext } from '../../contexts/localization/LocaleProvider';
-import { withStyles } from '@material-ui/core/styles';
 import { CSSTransition } from 'react-transition-group'
-import DeviceOrientation from "../..//pages/Demos/DeviceOrientation";
+import { LocaleContext } from '../../contexts/localization/LocaleProvider';
+import { useLocation, Route, Redirect } from "react-router-dom";
+import { withStyles } from '@material-ui/core/styles';
+// import DeviceOrientation from "../..//pages/Demos/DeviceOrientation";
 
 import Home           from '../../pages/Home';
 import Contact        from '../../pages/Contact';
 import Projects       from '../../pages/Projects';
-import Demos          from '../../pages/Demos';
+// import Demos          from '../../pages/Demos';
 import WorkExperience from '../../pages/WorkExperience';
 import Education      from '../../pages/Education';
 
