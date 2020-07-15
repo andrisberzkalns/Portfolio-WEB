@@ -1,4 +1,3 @@
-// import Navigation from './Navigation';
-import Navigation from './NavigationSideBar';
+import Navigation from './Navigation';
 
 export default Navigation;

@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { Locale, LocaleContext } from '../../contexts/localization/LocaleProvider';
+import { Locale, LocaleContext, getLocale } from '../../contexts/localization/LocaleProvider';
 import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Logo from './Components/Logo';
+import LazyLoad from 'react-lazy-load';
+import GlitchEffect from '../../components/GlitchEffect';
 
 const styles = (theme) => {
 
@@ -37,15 +39,18 @@ const styles = (theme) => {
         background: {
             position: 'relative',
             backgroundColor: 'rgba(20,20,20,0.75)',
-            // background: 'linear-gradient(-45deg, #111, #222222)',
-            // opacity: '0.8',
-            height: '100vh'
+            height: '100vh',
+            width: '100vw'
         },
         button: {
             border: '1px solid white',
             fontFamily: 'acumin-pro, sans-serif',
             fontWeight: 700,
-            marginTop: '30px'
+            marginTop: '30px',
+            '&:hover': {
+                backgroundColor: 'rgba(255,255,255,0.4)',
+        
+            }
         },
         divider: {
             height: '2px',
@@ -54,63 +59,72 @@ const styles = (theme) => {
             marginTop: '18px',
             marginBottom: '18px',
         },
-        logo: {
-            position: 'absolute',
-
-            [theme.breakpoints.down('sm')]: {
-                width: '30%',
-                height: '30%'
-            },
-            [theme.breakpoints.up('md')]: {
-                width: '15%',
-                height: '15%'
-            },
-            [theme.breakpoints.up('lg')]: {
-                width: '12%',
-                height: '12%'
-            }
-        },
         introContainer: {
             height: '100vh',
             [theme.breakpoints.down('sm')]: {
-                height: '100%',
+                padding: '40px',
+                height: '50vh',
             },
             [theme.breakpoints.up('md')]: {
-                paddingLeft: '80px',
-                height: '100%',
+                padding: '80px',
+                height: '50vh',
             },
             [theme.breakpoints.up('lg')]: {
-                paddingLeft: '80px',
+                padding: '80px',
                 height: '100vh',
             },
         },
-        container: {
+        logoContainer: {
             height: '100vh',
             [theme.breakpoints.down('sm')]: {
-                height: '100%',
+                height: '50vh',
             },
             [theme.breakpoints.up('md')]: {
-                height: '100%',
+                height: '50vh',
             },
             [theme.breakpoints.up('lg')]: {
                 height: '100vh',
+            },
+        },
+        logo: {
+            [theme.breakpoints.down('sm')]: {
+                width: '60%',
+                height: '60%',
+            },
+            [theme.breakpoints.up('md')]: {
+                width: '60%',
+                height: '60%',
+            },
+            [theme.breakpoints.up('lg')]: {
+                width: '40%',
+                height: '40%',
             },
         },
         paper: {
             backgroundColor: "black"
         },
+        video: {
+            minWidth: '100%',
+            minHeight: '100%',
+        },
+        nameContainer: {
+            width: '100%',
+            whiteSpace: 'nowrap'
+        }
 })};
 
 const Home = ({classes}) => {
 
     const { language, } = useContext(LocaleContext);
-    
+
     return (
         <>
             <div style={{backgroundColor: '#000', position: 'absolute', width: '100vw', height: '100vh'}}>
-                <video loop="loop" muted="muted" autoPlay>
-                    <source src="/video/digital_numbers.mp4" type="video/mp4"></source>
-                </video>
+                <LazyLoad>
+                    <video className={classes.video} loop="loop" muted="muted" autoPlay>
+                        <source src="/video/digital_numbers.mp4" type="video/mp4"></source>
+                    </video>
+                </LazyLoad>
             </div>
             <div className={classes.background}>
                 <Grid container>
@@ -118,14 +132,22 @@ const Home = ({classes}) => {
                         item 
                         container
                         xs={12} 
-                        md={8} 
+                        md={12} 
                         lg={6} 
                         spacing={0}
                         direction="column"
                         justify="center"
                         className={classes.introContainer}
                     >
-                        <Typography variant="h1" className={classes.name}><Locale string={"home.name"}/></Typography>
+                        <div className={classes.nameContainer}>
+                        {
+                            getLocale(language, 'home.name').split('').map((letter, index) => (
+                                <GlitchEffect key={letter + index} fontSize="3em">{letter}</GlitchEffect>
+                            ))
+                        }
+                        </div>
+
+                        {/* <Typography variant="h1" className={classes.name}><Locale string={"home.name"}/></Typography> */}
                         <Typography variant="subtitle1" className={classes.title}><Locale string={"home.title"}/></Typography>
                         <div className={classes.divider}></div>
                         <Typography variant="body1" className={classes.description}><Locale string={"home.description"}/></Typography>
@@ -144,15 +166,17 @@ const Home = ({classes}) => {
                         item
                         container
                         xs={12} 
-                        md={8} 
+                        md={12} 
                         lg={6} 
                         spacing={0}
                         direction="column"
                         alignItems="center"
                         justify="center"
-                        className={classes.container}
+                        className={classes.logoContainer}
                     >
-                        <Logo width="30%" height="30%" />
+                        <div className={classes.logo}>
+                            <Logo />
+                        </div>
                     </Grid>
                 </Grid>
             </div>

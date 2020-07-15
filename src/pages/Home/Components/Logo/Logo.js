@@ -32,6 +32,9 @@ const styles = (theme) => ({
     },
     blue: {
         fill: '#00f'
+    },
+    black: {
+        fill: '#000'
     }
 });
 
@@ -105,18 +108,19 @@ const Logo = ({classes, width, height, pointerX, pointerY}) => {
     }, [jitterLogo, lastPosition])
 
     return (
-        <div style={{ width: width, height: height, zIndex: 20}} onMouseMove={handleMouseMove}>
-            <div className={classes.container}>
-                {
-                [{id: 'logo-r', class: classes.red, offset: offset.r},
-                {id: 'logo-g', class: classes.green, offset: offset.g},
-                {id: 'logo-b', class: classes.blue, offset: offset.b}].map(each => (
-                    <svg id={each.id} key={each.id} height="100%" width="100%" viewBox="0 0 7 7" style={{left: each.offset.x, top: each.offset.y}} className={`${classes.svgLogo} ${each.class}`}>
-                        <path className={classes.svgPath} d="M 0 0 V 1 H 6 H 6 V 5 H 7 V 0 H 0 M 5 7 V 4 H 4 V 7 H 5 M 5 2 H 2 V 6 H 0 V 7 H 3 V 3 H 5 V 2"/>
-                    </svg>
-                ))
-                }
-            </div>
+        <div className={classes.container} onMouseMove={handleMouseMove}>
+            {
+            [{id: 'logo-r', class: classes.red, offset: offset.r},
+            {id: 'logo-g', class: classes.green, offset: offset.g},
+            {id: 'logo-b', class: classes.blue, offset: offset.b}].map(each => (
+                <svg id={each.id} key={each.id} height="100%" width="100%" viewBox="0 0 7 7" style={{left: each.offset.x, top: each.offset.y}} className={`${classes.svgLogo} ${each.class}`}>
+                    <path className={classes.svgPath} d="M 0 0 V 1 H 6 H 6 V 5 H 7 V 0 H 0 M 5 7 V 4 H 4 V 7 H 5 M 5 2 H 2 V 6 H 0 V 7 H 3 V 3 H 5 V 2"/>
+                </svg>
+            ))
+            }
+            <svg height="100%" width="100%" viewBox="0 0 7 7" className={` ${classes.black}`}>
+                <path className={classes.svgPath} d="M 0 0 V 1 H 6 H 6 V 5 H 7 V 0 H 0 M 5 7 V 4 H 4 V 7 H 5 M 5 2 H 2 V 6 H 0 V 7 H 3 V 3 H 5 V 2"/>
+            </svg>
         </div>
     )
 }

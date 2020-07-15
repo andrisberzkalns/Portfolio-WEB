@@ -9,9 +9,9 @@ const styles = (theme) => {
             position: 'relative'
         },
         icon: {
-            padding: '12px',
-            marginTop: '3px',
-            marginBottom: '3px',
+            padding: '8px',
+            marginLeft: '10px',
+            fontSize: '2em',
             zIndex: 5
         },
         label: {
@@ -19,12 +19,12 @@ const styles = (theme) => {
             backgroundColor: '#111',
             boxShadow: '0px 0px 15px black',
             fontFamily: 'acumin-pro, sans-serif',
-            fontSize: '1em',
+            fontSize: '1.2em',
             fontStyle: 'normal',
             fontWeight: 400,
             opacity: 0,
             padding: '4px',
-            paddingRight: '14px',
+            paddingRight: '10px',
             paddingLeft: '10px',
             position: 'absolute',
             textAlign: 'right',
@@ -39,20 +39,20 @@ const styles = (theme) => {
     }
 };
 
-const NavigationItem = ({classes, label, icon, selected}) => {
+const NavigationItemTop = ({classes, label, icon, selected}) => {
 
-    const [{ left, opacity, color }, setTransition] = useSpring(() => ({ 
-        left: -100, 
+    const [{ top, opacity, color }, setTransition] = useSpring(() => ({ 
+        top: -100, 
         opacity: 0, 
         color: '#777',
-        config: { mass: 4, tension: 2200, friction: 200, clamp: true }
+        config: { mass: 4, tension: 2200, friction: 200 }
     }));
     const MenuIcon = icon;
 
     return (
         <div 
-            onMouseEnter={() => setTransition({ left: 50, opacity: 1, color: "#fff" })}
-            onMouseLeave={() => setTransition({ left: -100, opacity: 0, color: "#777" })}
+            onMouseEnter={() => setTransition({ top: 50, opacity: 1, color: "#fff" })}
+            onMouseLeave={() => setTransition({ top: -100, opacity: 0, color: "#777" })}
             className={classes.menuButton}
             aria-label={label}
         >
@@ -60,7 +60,7 @@ const NavigationItem = ({classes, label, icon, selected}) => {
                 <MenuIcon className={classes.icon}/>
             </animated.span> 
             <animated.div 
-                style={{ left: left, opacity: opacity }}
+                style={{ top: top, opacity: opacity }}
                 className={classes.label}
             >
                 {label}
@@ -69,4 +69,4 @@ const NavigationItem = ({classes, label, icon, selected}) => {
     )
 }
 
-export default withStyles(styles)(NavigationItem);
+export default withStyles(styles)(NavigationItemTop);

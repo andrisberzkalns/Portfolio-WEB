@@ -36,8 +36,8 @@ const Projects = ({classes}) => {
                             item 
                             spacing={0}
                             xs={12}
-                            sm={6}
-                            md={6}
+                            sm={12}
+                            md={12}
                             lg={4}
                             xl={3}
 

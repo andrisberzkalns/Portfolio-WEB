@@ -1,54 +1,92 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
+import { useSpring, animated } from 'react-spring'
+import { useHover } from 'react-use-gesture'
 
 const styles = (theme) => ({
-    container: {
+    container: {  
         position: 'relative',
-        width: '100%',
-        height: '100%'
+        display: 'inline-block',
+        // float: 'left'
     },
-    svgLogo: {  
-        position: 'absolute',
-        // transform: 'translate(-50%, -50%)',
-        'mix-blend-mode': 'difference',
-        // [theme.breakpoints.down('sm')]: {
-        //     width: '30%',
-        //     height: '30%'
-        // },
-        // [theme.breakpoints.up('md')]: {
-        //     width: '15%',
-        //     height: '15%'
-        // },
-        // [theme.breakpoints.up('lg')]: {
-        //     width: '12%',
-        //     height: '12%'
-        // }
+    text: {
+        fontFamily: 'open sans',
+        fontSize: '3em',
+        fontStyle: 'bold',
+        fontWeight: 700,
+        textTransform: 'uppercase',
+        cursor: 'pointer'
     },
     red: {
-        fill: '#f00'
+        color: '#f00',
+        fill: '#f00',
+        position: 'absolute',
+        'mix-blend-mode': 'difference',
     },
     green: {
-        fill: '#0f0'
+        color: '#0f0',
+        fill: '#0f0',
+        position: 'absolute',
+        'mix-blend-mode': 'difference',
     },
     blue: {
-        fill: '#00f'
+        color: '#00f',
+        fill: '#00f',
+        position: 'absolute',
+        'mix-blend-mode': 'difference',
+    },
+    black: {
+        color: '#000',
+        fill: '#000',
+    },
+    noselect: {
+        userSelect: 'none',
     }
 });
 
-const GlitchEffect = ({children}) => {
-    return (
-        <>
-            <span>
-                {children}
-            </span>
-            <span>
-                {children}
-            </span>
-            <span>
-                {children}
-            </span>
-        </>
-    )
+const INTENSITY = 16;
+const MAX_ROTATION = 15;
+
+const GlitchEffect = ({classes, children, fontSize}) => {
+    // const [{ x, y, r }, set] = useState({x: 0, y: 0, r: 0})
+    const [{ x = 0, y = 0, r }, set] = useSpring(() => ({ 
+        x: 0, 
+        y: 0, 
+        r: 0,
+        config: { mass: 1, tension: 5000, friction: 50} 
+    }))
+
+    const bind = useHover((e) => {
+        set({ x: (Math.random() - 0.5) * INTENSITY, y: (Math.random() - 0.5) * INTENSITY, r: ((Math.random() - 0.5) * MAX_ROTATION)})
+        setTimeout(() => {
+            set({x: 0, y: 0, r: 0})
+        }, 150)
+    });
+
+    if(children === ' ') {
+        return (
+            <div className={classes.container}>
+                <div style={{width: '14px'}}></div>
+            </div>
+        )
+    }
+
+        return (
+            <div className={classes.container} {...bind()}>
+                <animated.span className={`${classes.text} ${classes.red} ${classes.noselect}`} style={{left: -x, top: -y, fontSize: fontSize, transform: r.interpolate(rx => `rotate(${-rx}deg)`)}}>
+                    {children}
+                </animated.span>
+                <animated.span className={`${classes.text} ${classes.green} ${classes.noselect}`} style={{left: x, top: y, fontSize: fontSize, transform: r.interpolate(rx => `rotate(${rx}deg)`) }}>
+                    {children}
+                </animated.span>
+                <animated.span className={`${classes.text} ${classes.blue} ${classes.noselect}`} style={{left: -x, top: -y, fontSize: fontSize, transform: r.interpolate(rx => `rotate(${-rx}deg)`)}}>
+                    {children}
+                </animated.span>
+                <span className={`${classes.text} ${classes.black}`} style={{opacity: 1, fontSize: fontSize}}>
+                    {children}
+                </span>
+            </div>
+        )
 }
 
 export default withStyles(styles)(GlitchEffect);

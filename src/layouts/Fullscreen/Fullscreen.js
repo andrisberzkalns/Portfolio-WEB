@@ -10,11 +10,20 @@ const styles = (theme) => ({
         // minHeight: '100vh',
         overflowY: 'scroll',
         overflowX: 'hidden',
-        width: 'calc(100vw - 50px)',
         height: '100vh',
         left: 0,
         top: 0,
-        paddingLeft: 50
+        
+        [theme.breakpoints.down('md')]: {
+            width: 'calc(100vw)',
+            paddingTop: 50,
+            paddingLeft: 0
+        },
+        [theme.breakpoints.up('lg')]: {
+            width: 'calc(100vw - 50px)',
+            paddingTop: 0,
+            paddingLeft: 50
+        }
     }
 });
 

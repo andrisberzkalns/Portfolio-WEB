@@ -63,7 +63,7 @@ const Contact = ({classes}) => {
                         <Locale string={"contact.title"} /> 
                     </Typography>
                     <Typography 
-                        variant="subtitle"
+                        variant="subtitle1"
                         className={classes.subtitle}
                     >
                         <Locale string={"contact.text"} /> 
