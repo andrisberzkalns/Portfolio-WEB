@@ -9,29 +9,26 @@
 }
   
 .page-enter {
-    z-index: 10;
-    transform: translateY(-100vh);
+    /* transform: translateX(-100vw); */
     opacity: 0;
 }
   
 .page-enter-active {
-    z-index: 10;
     opacity: 1;
-    transform: translateY(0);
+    /* transform: translateX(0); */
     transition: opacity 200ms;
-    /* transition: opacity 200ms, transform 200ms; */
+    /* transition: opacity 400ms, transform 400ms; */
 }
 
 .page-exit {
-    z-index: 1;
-    transform: translateY(0);
+    /* transform: translateX(0); */
     opacity: 1;
 }
 
 .page-exit-active {
-    z-index: 1;
     opacity: 0;
     /* transform: translateY(100vh); */
     transition: opacity 200ms;
+    /* transition: opacity 400ms, transform 400ms; */
     /* transition-delay: 100ms; */
 }

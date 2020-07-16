@@ -30,7 +30,7 @@ const styles = (theme) => {
             textAlign: 'right',
             top: 11,
             whiteSpace: 'nowrap',
-            zIndex: -1
+            zIndex: 201
         },
         textContainer: {
             whiteSpace: 'wrap',

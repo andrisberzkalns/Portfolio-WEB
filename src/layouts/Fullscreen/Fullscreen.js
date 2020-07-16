@@ -14,12 +14,13 @@ const styles = (theme) => ({
         left: 0,
         top: 0,
         
-        [theme.breakpoints.down('md')]: {
+        [theme.breakpoints.down('sm')]: {
             width: 'calc(100vw)',
             paddingTop: 50,
-            paddingLeft: 0
+            paddingLeft: 0,
+            height: 'calc(100vh - 50px)'
         },
-        [theme.breakpoints.up('lg')]: {
+        [theme.breakpoints.up('md')]: {
             width: 'calc(100vw - 50px)',
             paddingTop: 0,
             paddingLeft: 50

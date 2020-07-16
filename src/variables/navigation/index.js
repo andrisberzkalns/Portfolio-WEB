@@ -1,7 +1,7 @@
 import React from 'react';
 import { Locale } from '../../contexts/localization/LocaleProvider';
 
-import Business from '@material-ui/icons/Business';
+// import Business from '@material-ui/icons/Business';
 import Email from '@material-ui/icons/Email';
 import Home from '@material-ui/icons/Home';
 import School from '@material-ui/icons/School';
@@ -13,11 +13,11 @@ const links = [
       path: '/',
       icon: Home
     },
-    {
-      label: <Locale string={"navigation.work"}/>,
-      path: '/work-experience',
-      icon: Business
-    },
+    // {
+    //   label: <Locale string={"navigation.work"}/>,
+    //   path: '/work-experience',
+    //   icon: Business
+    // },
     {
       label: <Locale string={"navigation.education"}/>,
       path: '/education',

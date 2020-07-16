@@ -9,6 +9,13 @@ const styles = (theme) => ({
         display: 'inline-block',
         // float: 'left'
     },
+    break: {
+        [theme.breakpoints.down('sm')]: {
+        },
+        [theme.breakpoints.up('md')]: {
+            display: 'inline-block',
+        }
+    },
     text: {
         fontFamily: 'open sans',
         fontSize: '3em',
@@ -44,45 +51,49 @@ const styles = (theme) => ({
     }
 });
 
-const INTENSITY = 16;
+const INTENSITY = 6;
 const MAX_ROTATION = 15;
 
 const GlitchEffect = ({classes, children, fontSize}) => {
     // const [{ x, y, r }, set] = useState({x: 0, y: 0, r: 0})
-    const [{ x = 0, y = 0, r }, set] = useSpring(() => ({ 
+    const [{ x, y, r, nx, ny }, set] = useSpring(() => ({ 
         x: 0, 
         y: 0, 
+        nx: 0, 
+        ny: 0, 
         r: 0,
         config: { mass: 1, tension: 5000, friction: 50} 
     }))
 
     const bind = useHover((e) => {
-        set({ x: (Math.random() - 0.5) * INTENSITY, y: (Math.random() - 0.5) * INTENSITY, r: ((Math.random() - 0.5) * MAX_ROTATION)})
+        const xVal = (Math.random() - 0.5) * INTENSITY;
+        const yVal = (Math.random() - 0.5) * INTENSITY;
+        set({ nx: -xVal, ny: -yVal, x: xVal, y: yVal, r: ((Math.random() - 0.5) * MAX_ROTATION)})
         setTimeout(() => {
-            set({x: 0, y: 0, r: 0})
+            set({x: 0, y: 0, r: 0, nx: 0, ny: 0 })
         }, 150)
     });
 
     if(children === ' ') {
         return (
-            <div className={classes.container}>
+            <div className={classes.break}>
                 <div style={{width: '14px'}}></div>
             </div>
         )
     }
 
         return (
-            <div className={classes.container} {...bind()}>
-                <animated.span className={`${classes.text} ${classes.red} ${classes.noselect}`} style={{left: -x, top: -y, fontSize: fontSize, transform: r.interpolate(rx => `rotate(${-rx}deg)`)}}>
+            <div className={`${classes.container} ${classes.noselect}`} {...bind()}>
+                <animated.span className={`${classes.text} ${classes.red} ${classes.noselect}`} style={{left: nx, top: ny, fontSize: fontSize, transform: r.interpolate(rx => `rotate(${-rx}deg)`)}}>
                     {children}
                 </animated.span>
                 <animated.span className={`${classes.text} ${classes.green} ${classes.noselect}`} style={{left: x, top: y, fontSize: fontSize, transform: r.interpolate(rx => `rotate(${rx}deg)`) }}>
                     {children}
                 </animated.span>
-                <animated.span className={`${classes.text} ${classes.blue} ${classes.noselect}`} style={{left: -x, top: -y, fontSize: fontSize, transform: r.interpolate(rx => `rotate(${-rx}deg)`)}}>
+                <animated.span className={`${classes.text} ${classes.blue} ${classes.noselect}`} style={{left: nx, top: ny, fontSize: fontSize, transform: r.interpolate(rx => `rotate(${-rx}deg)`)}}>
                     {children}
                 </animated.span>
-                <span className={`${classes.text} ${classes.black}`} style={{opacity: 1, fontSize: fontSize}}>
+                <span className={`${classes.text} ${classes.black} ${classes.noselect}`} style={{opacity: 1, fontSize: fontSize}}>
                     {children}
                 </span>
             </div>

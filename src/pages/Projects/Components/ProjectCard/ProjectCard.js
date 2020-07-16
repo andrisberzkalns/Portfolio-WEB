@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { useSpring, animated } from 'react-spring'
 import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
+// import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 
 const styles = (theme) => ({
@@ -78,12 +78,16 @@ const styles = (theme) => ({
     }
   },
   chip: {
+    display: 'inline-block',
     [theme.breakpoints.between('sm', 'sm')]: {
       fontSize: '0.6em'
     }
   },
   chips: {
     marginTop: '20px',
+    height: '30px',
+    width: '100%',
+    overflowX: 'scroll',
     [theme.breakpoints.between('sm', 'sm')]: {
       marginTop: '5px'
     }
@@ -138,7 +142,7 @@ const ProjectCard = ({classes, details}) => {
           <Typography variant="body1" className={classes.bodyText} dangerouslySetInnerHTML={{__html: details.description}}>
           </Typography>
 
-          <div className={classes.chips}>
+          {/* <div className={classes.chips}>
             {details.keywords && details.keywords.map((keyword, index) => 
               <Chip
                   key={index}
@@ -147,7 +151,7 @@ const ProjectCard = ({classes, details}) => {
                   className={classes.chip}
               />
             )}
-          </div>
+          </div> */}
           
           {
             details.buttonText &&

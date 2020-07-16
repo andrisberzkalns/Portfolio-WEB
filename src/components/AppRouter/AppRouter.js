@@ -3,64 +3,10 @@ import { CSSTransition } from 'react-transition-group'
 import { LocaleContext } from '../../contexts/localization/LocaleProvider';
 import { useLocation, Route, Redirect } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
-// import DeviceOrientation from "../..//pages/Demos/DeviceOrientation";
 
-import Home           from '../../pages/Home';
-import Contact        from '../../pages/Contact';
-import Projects       from '../../pages/Projects';
-// import Demos          from '../../pages/Demos';
-import WorkExperience from '../../pages/WorkExperience';
-import Education      from '../../pages/Education';
-
-// import Page from '../../layouts/Page';
-import Fullscreen from '../../layouts/Fullscreen';
+import routes from '../../variables/routes';
 
 import './routing.css';
-
-const routes = [
-  { 
-    path: '/', 
-    name: 'Home', 
-    Component: Home, 
-    Layout: Fullscreen 
-  },
-  { 
-    path: '/projects', 
-    name: 'Projects', 
-    Component: Projects,
-    Layout: Fullscreen 
-  },
-  { 
-    path: '/work-experience', 
-    name: 'Work experience', 
-    Component: WorkExperience,
-    Layout: Fullscreen 
-  },
-  { 
-    path: '/education', 
-    name: 'Education', 
-    Component: Education,
-    Layout: Fullscreen 
-  },
-  // { 
-  //   path: '/demos/device-orientation', 
-  //   name: 'Device orientation', 
-  //   Component: DeviceOrientation,
-  //   Layout: Fullscreen 
-  // },
-  // { 
-  //   path: '/demos', 
-  //   name: 'Demos', 
-  //   Component: Demos,
-  //   Layout: Fullscreen 
-  // },
-  { 
-    path: '/contact', 
-    name: 'Contact', 
-    Component: Contact,
-    Layout: Fullscreen 
-  },
-]
 
 const styles = (theme) => {
   

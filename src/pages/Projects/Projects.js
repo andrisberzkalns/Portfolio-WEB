@@ -9,10 +9,16 @@ import projects from '../../variables/projects';
 const styles = (theme) => ({
     container: {
         // position: 'relative',
-        paddingTop: '60px',
-        paddingBottom: '60px',
         backgroundColor: 'rgb(30,30,30)',
-        minHeight: 'calc(100vh - 120px)'
+
+        [theme.breakpoints.down('sm')]: {
+            minHeight: '100vh',
+        },
+        [theme.breakpoints.up('md')]: {
+            paddingTop: '60px',
+            paddingBottom: '60px',
+            minHeight: 'calc(100vh - 120px)'
+        }
     }
 });
 
@@ -37,7 +43,7 @@ const Projects = ({classes}) => {
                             spacing={0}
                             xs={12}
                             sm={12}
-                            md={12}
+                            md={6}
                             lg={4}
                             xl={3}
 

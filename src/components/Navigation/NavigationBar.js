@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import LocalizationButton from '../LocalizationButton';
 import { NavigationItemTop as NavigationItem } from './components/NavigationItem';
 import links from '../../variables/navigation';
+// import Menu from '@material-ui/icons/Menu';
 
 const styles = (theme) => {
 
@@ -31,6 +32,9 @@ const styles = (theme) => {
       display: 'inline-block'
     },
     itemContainer: {
+      // padding: '4px',
+      // fontSize: '3em',
+      color: '#fff',
       marginLeft: 60
     }
   }
@@ -48,21 +52,25 @@ const NavigationBar = memo(({ classes }) => {
         </div>
         <div className={classes.itemContainer}>
         {
-            links.map(link => (
-              <div key={link.path} className={classes.item}>
-                <Link to={"/" + language + link.path}>
-                    <NavigationItem 
-                        label={link.label}
-                        icon={link.icon}
-                        selected={location.pathname.slice(3, location.pathname.length) === link.path}
-                    />
-                </Link>
-              </div>
-            ))
+          links.map(link => (
+            <div key={link.path} className={classes.item}>
+              <Link to={"/" + language + link.path}>
+                  <NavigationItem 
+                      label={link.label}
+                      icon={link.icon}
+                      selected={location.pathname.slice(3, location.pathname.length) === link.path}
+                  />
+              </Link>
+            </div>
+          ))
         }
+          {/* <Menu style={{fontSize: '1em'}}></Menu> */}
         </div>
     </div>
   )
 })
+    
+
+
 
 export default withStyles(styles)(NavigationBar);

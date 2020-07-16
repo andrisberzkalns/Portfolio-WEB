@@ -7,7 +7,16 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = (theme) => ({
     container: {
-        paddingLeft: '60px'
+        [theme.breakpoints.down('sm')]: {
+            textAlign: 'center',
+            padding: '20px'
+        },
+        [theme.breakpoints.up('md')]: {
+            padding: '40px'
+        },
+        [theme.breakpoints.up('lg')]: {
+            padding: '80px'
+        },
     },
     educationContainer: {
         height: '100vh'
@@ -77,18 +86,16 @@ const schools = [
 const Education = ({classes}) => {
 
     return (
-        <div className={classes.container}>
-            <Grid 
-                item 
-                container
-                xs={12} 
-                md={8} 
-                lg={6} 
-                spacing={0}
-                direction="column"
-                justify="center"
-                className={classes.educationContainer}
-            >
+        <Grid 
+            item 
+            container
+            xs={12} 
+            spacing={0}
+            direction="column"
+            justify="center"
+            className={classes.educationContainer}
+        >
+            <div className={classes.container}>
             {
             schools.map((school, key) => (
                 <div key={key} className={classes.school}>
@@ -106,9 +113,9 @@ const Education = ({classes}) => {
                     </Typography>
                 </div>
             ))
-            }
-            </Grid>
+        }
         </div>
+    </Grid>
     )
 }
 
