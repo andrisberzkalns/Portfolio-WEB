@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Switch, useLocation } from "react-router-dom";
+import { Switch, useLocation, Redirect } from "react-router-dom";
 import { LocaleContext } from '../../contexts/localization';
 import routes from '../../variables/locales/routes.json';
 
@@ -8,15 +8,16 @@ const LocalizedSwitch = ({children}) => {
     const { language, changeLanguage } = useContext(LocaleContext);
     const location = useLocation();
 
+
     useEffect(() => {
         
         const splitRoute = (route) => {
             return route.split('/').filter(each => each !== "");
         }
-        const currentLanguage = splitRoute(location.pathname)[0];
+        const currentLanguage = splitRoute(location.pathname)[0] || language || 'en';
         
         changeLanguage(currentLanguage);
-    }, [location.pathname, changeLanguage]);
+    }, [location.pathname, changeLanguage, language]);
 
     const localizeRoute = (path) => {
 
@@ -31,6 +32,11 @@ const LocalizedSwitch = ({children}) => {
                     ? path
                     : `/${language}${routes[language][path]}`
         }
+    }
+
+    
+    if(location.pathname === '/') {
+        return (<Redirect to={`${language}/`} />)
     }
 
     return (

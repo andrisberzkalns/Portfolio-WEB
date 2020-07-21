@@ -7,8 +7,11 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = (theme) => ({
     container: {
         width: 'calc(100% - 80px)',
-        height: 'calc(100% - 80px)',
-        padding: '40px'
+        height: 'calc(50vh - 40px + 10em)',
+        padding: '40px',
+        paddingTop: 'calc(50vh - 10em)',
+        backgroundColor: '#222',
+        textAlign: 'center'
     },
     title: {
         fontFamily: 'open sans',
@@ -16,10 +19,10 @@ const styles = (theme) => ({
         fontStyle: 'bold',
         fontWeight: 700,
         textTransform: 'uppercase',
-        color: "#000",
+        color: "#fff",
     },
     subtitle: {
-        color: "#333",
+        color: "#ddd",
         fontFamily: 'acumin-pro, sans-serif',
         fontSize: '1.2em',
         fontStyle: 'normal',

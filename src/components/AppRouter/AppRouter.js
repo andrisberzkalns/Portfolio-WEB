@@ -80,7 +80,7 @@ const AppRouter = ({ classes, children }) => {
             )}}
           </Route>
         ))}
-        {/* <Redirect from="/" exact to={localizeRoute('/')} /> */}
+        {/* <Redirect key="redirect" exact to={`/${language}/`} /> */}
         {/* <Redirect key="redirect" to={localizeRoute('/404')} /> */}
       </LocalizedSwitch>
     </Router>

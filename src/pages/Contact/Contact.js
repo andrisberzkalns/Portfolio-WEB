@@ -18,7 +18,7 @@ const styles = (theme) => ({
     },
     container: {
         backgroundColor: '#eee',
-        height: '100vh',
+        height: 'calc(100vh - 10% - 20px)',
         padding: '20px',
         paddingTop: '10%'
     },
