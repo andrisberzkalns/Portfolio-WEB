@@ -1,25 +1,26 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-} from "react-router-dom";
-import { LocaleProvider } from "./contexts/localization/LocaleProvider";
+
 import AppRouter from './components/AppRouter';
 import Navigation from './components/Navigation';
-import Theme from './themes/Theme';
+import ThemeProvider from './contexts/theme';
+
+import { HeaderProvider } from "./contexts/header";
+import { LocaleProvider } from "./contexts/localization";
+
 import './styles.scss';
 
 const App = () => {
 
   return (
-    <Theme>
-      <LocaleProvider>
-        <Router>
+    <ThemeProvider>
+      <HeaderProvider>
+        <LocaleProvider>
           <AppRouter>
             <Navigation/>
           </AppRouter>
-        </Router>
-      </LocaleProvider>
-    </Theme>
+        </LocaleProvider>
+      </HeaderProvider>
+    </ThemeProvider>
   );
 }
 

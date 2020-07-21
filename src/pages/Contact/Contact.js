@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Locale } from '../../contexts/localization/LocaleProvider';
+import { Locale } from '../../contexts/localization';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -11,7 +11,10 @@ import Input from '@material-ui/core/Input';
 const styles = (theme) => ({
     button: {
         color: '#000',
-        minWidth: '150px'
+        minWidth: '150px',
+        "&:hover": {
+            backgroundColor: '#ddd'
+        }
     },
     container: {
         backgroundColor: '#eee',

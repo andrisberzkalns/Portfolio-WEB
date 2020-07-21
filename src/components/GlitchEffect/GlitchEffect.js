@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { withStyles } from '@material-ui/core/styles';
 import { useSpring, animated } from 'react-spring'
 import { useHover } from 'react-use-gesture'
@@ -73,6 +73,19 @@ const GlitchEffect = ({classes, children, fontSize}) => {
             set({x: 0, y: 0, r: 0, nx: 0, ny: 0 })
         }, 150)
     });
+
+    useEffect(() => {
+        setInterval(() => {
+            if(Math.random() > 0.95) {
+                const xVala = (Math.random() - 0.5) * INTENSITY;
+                const yVala = (Math.random() - 0.5) * INTENSITY;
+                set({ nx: -xVala, ny: -yVala, x: xVala, y: yVala, r: ((Math.random() - 0.5) * MAX_ROTATION)})
+                setTimeout(() => {
+                    set({x: 0, y: 0, r: 0, nx: 0, ny: 0 })
+                }, 150)
+            }
+        }, 500)
+    }, [set])
 
     if(children === ' ') {
         return (

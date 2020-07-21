@@ -1,5 +1,5 @@
 import React from 'react';
-import { Locale } from '../../contexts/localization/LocaleProvider';
+import { Locale } from '../../contexts/localization';
 
 export default [
     {

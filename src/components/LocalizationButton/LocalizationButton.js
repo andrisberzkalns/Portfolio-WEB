@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { LocaleContext } from '../../contexts/localization/LocaleProvider';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import { LocaleContext } from '../../contexts/localization';
 import { withStyles } from '@material-ui/core/styles';
 import { useSpring, animated } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
@@ -31,6 +31,8 @@ const switchOrder = {
 
 const LocalizationButton = ({classes}) => {
 
+    const history = useHistory();
+    const { language, } = useContext(LocaleContext);
     const [{ scale }, setTransition] = useSpring(() => ({ 
         scale: 1,
         config: { mass: 2, tension: 900, friction: 30 }
@@ -38,37 +40,27 @@ const LocalizationButton = ({classes}) => {
     const bind = useDrag(({ down, movement: [mx, my] }) => {
         setTransition({ scale: down ? 0.9 : 1.15 })
     });
-    const { language, changeLanguage } = useContext(LocaleContext);
-    const location = useLocation();
-    let history = useHistory();
 
-    const setLanguage = (selectedLanguage) => {
-        
-        const paths = location.pathname.slice(1,location.pathname.length).split('/').filter((el) => el !== "");
-        let newPath = '/' + selectedLanguage + '/';
-
-        if(paths.length > 1){
-            newPath = newPath + paths.slice(1).join('/');
-        }
-        history.push(newPath);
-
-        changeLanguage(selectedLanguage)
+    const changeLanguage = (language) => {
+        history.push(`/${language}/`);
     }
 
     return (
         <div 
+            className={classes.container}
+            onClick={() => changeLanguage(switchOrder[language])}
             onMouseEnter={() => setTransition({ scale: 1.15 })}
             onMouseLeave={() => setTransition({ scale: 1 })}
-            className={classes.container} onClick={() => setLanguage(switchOrder[language])}
         >
             <animated.img 
                 {...bind()}
+                alt={`icon of ${language} flag`} 
                 className={classes.icon} 
                 src={icons[language]} 
-                alt={`icon of ${language} flag`} 
                 style={{transform: scale.interpolate(s => `scale(${s})`)}}
             />
         </div>
+
     )
 
 }

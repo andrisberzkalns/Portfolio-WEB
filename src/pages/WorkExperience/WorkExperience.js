@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import { Locale, getLocale, LocaleContext } from '../../contexts/localization/LocaleProvider';
+import { Locale, getLocale, LocaleContext } from '../../contexts/localization';
 import { withStyles } from '@material-ui/core/styles';
 
-// import ProjectCard from './Components/ProjectCard';
 import ProjectPaper from './Components/ProjectPaper';
 import Grid from '@material-ui/core/Grid';
 import projects from '../../variables/projects';

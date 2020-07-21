@@ -1,11 +1,12 @@
 import React, { useContext, memo } from 'react'
-import { Link, useLocation } from "react-router-dom";
-import { LocaleContext } from '../../contexts/localization/LocaleProvider';
+import { NavLink } from "react-router-dom";
+import { LocaleContext } from '../../contexts/localization';
 import { withStyles } from '@material-ui/core/styles';
 
 import LocalizationButton from '../LocalizationButton';
 import { NavigationItem } from './components/NavigationItem';
 import links from '../../variables/navigation';
+import routes from '../../variables/locales/routes';
 
 const styles = (theme) => {
 
@@ -28,8 +29,7 @@ const styles = (theme) => {
 
 const NavigationSideBar = memo(({ classes }) => {
 
-  let location = useLocation();
-  const { language, } = useContext(LocaleContext);
+  const { language } = useContext(LocaleContext);
 
   return (
     <div className={classes.container}>
@@ -37,14 +37,16 @@ const NavigationSideBar = memo(({ classes }) => {
             <LocalizationButton />
         </div>
         {
-            links.map(link => (
-            <Link key={link.path} to={"/" + language + link.path}>
-                <NavigationItem 
-                    label={link.label}
-                    icon={link.icon}
-                    selected={location.pathname.slice(3, location.pathname.length) === link.path}
-                />
-            </Link>
+            links.map((link, index) => (
+            <NavLink 
+              key={link.path}
+              to={`/${language}${routes[language][link.path]}`} 
+             >
+              <NavigationItem 
+                label={link.label}
+                icon={link.icon}
+              />
+            </NavLink>
             ))
         }
     </div>

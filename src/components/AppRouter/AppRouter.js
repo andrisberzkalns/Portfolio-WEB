@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { LocaleContext } from '../../contexts/localization/LocaleProvider';
-import { useLocation, Route, Redirect } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
+import Header from '../Header';
+import LocalizedSwitch from './LocalizedSwitch';
 
 import routes from '../../variables/routes';
-
 import './routing.css';
 
 const styles = (theme) => {
@@ -53,50 +53,37 @@ const styles = (theme) => {
 
 const AppRouter = ({ classes, children }) => {
 
-  const { language, changeLanguage } = useContext(LocaleContext);
-  const location = useLocation();
-  
-  const splitRoute = (route) => {
-    return route.split('/').filter(each => each !== "");
-  }
-
-  if(location.pathname === "/") {
-    return <Redirect to={`/${language}/`} />
-  }
-
-  if(splitRoute(location.pathname)[0] !== language) {
-    changeLanguage(splitRoute(location.pathname)[0]);
-  }
-
-  const localizeRoute = (path) => {
-    return "/" + language + path;
-  }
-
   return (
-    <>
+    <Router>
       {children}
-      {routes.map(({ path, Component, Layout }) => (
-          <Route key={path} exact path={localizeRoute(path)}>
-              {({ match }) => (
-                  <CSSTransition
-                    in={match !== null}
-                    timeout={200}
-                    classNames="page"
-                    unmountOnExit
-                  >
-                    <div className="page">
-                      { Layout &&
-                        <Layout>
-                            <Component/>
-                        </Layout>
-                      }
-                    </div>
-                  </CSSTransition>
-              )}
+      <LocalizedSwitch>
+        {routes.map(({ path, Component, Layout, meta, exact }) => (
+
+          <Route key={path} exact={exact} path={path}>
+            {({ match }) => {
+              return (
+              <CSSTransition
+                in={match !== null}
+                timeout={500}
+                classNames="page"
+                unmountOnExit
+              >
+                <div className="page">
+                  { Layout &&
+                    <Layout>
+                      <Header title={meta.title} description={meta.description} />
+                      <Component/>
+                    </Layout>
+                  }
+                </div>
+              </CSSTransition>
+            )}}
           </Route>
-      ))}
-      {/* <Redirect to="/en/" /> */}
-    </>
+        ))}
+        {/* <Redirect from="/" exact to={localizeRoute('/')} /> */}
+        {/* <Redirect key="redirect" to={localizeRoute('/404')} /> */}
+      </LocalizedSwitch>
+    </Router>
   )
 }
 

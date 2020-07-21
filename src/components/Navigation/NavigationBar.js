@@ -1,12 +1,12 @@
 import React, { useContext, memo } from 'react'
-import { Link, useLocation } from "react-router-dom";
-import { LocaleContext } from '../../contexts/localization/LocaleProvider';
+import { NavLink } from "react-router-dom";
+import { LocaleContext } from '../../contexts/localization';
 import { withStyles } from '@material-ui/core/styles';
 
 import LocalizationButton from '../LocalizationButton';
 import { NavigationItemTop as NavigationItem } from './components/NavigationItem';
 import links from '../../variables/navigation';
-// import Menu from '@material-ui/icons/Menu';
+import routes from '../../variables/locales/routes';
 
 const styles = (theme) => {
 
@@ -32,17 +32,17 @@ const styles = (theme) => {
       display: 'inline-block'
     },
     itemContainer: {
-      // padding: '4px',
-      // fontSize: '3em',
       color: '#fff',
       marginLeft: 60
+    },
+    selected: {
+      backgroundColor: 'red'
     }
   }
 };
 
 const NavigationBar = memo(({ classes }) => {
 
-  let location = useLocation();
   const { language, } = useContext(LocaleContext);
 
   return (
@@ -52,15 +52,14 @@ const NavigationBar = memo(({ classes }) => {
         </div>
         <div className={classes.itemContainer}>
         {
-          links.map(link => (
+          links.map((link, index) => (
             <div key={link.path} className={classes.item}>
-              <Link to={"/" + language + link.path}>
-                  <NavigationItem 
-                      label={link.label}
-                      icon={link.icon}
-                      selected={location.pathname.slice(3, location.pathname.length) === link.path}
-                  />
-              </Link>
+              <NavLink to={`/${language}${routes[language][link.path]}`}>
+                <NavigationItem 
+                    label={link.label}
+                    icon={link.icon}
+                />
+              </NavLink>
             </div>
           ))
         }

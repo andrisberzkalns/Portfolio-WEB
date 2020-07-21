@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Locale } from '../../contexts/localization/LocaleProvider';
+import { Locale } from '../../contexts/localization';
 import { Typography } from '@material-ui/core';
 import School from '@material-ui/icons/School';
 import Grid from '@material-ui/core/Grid';

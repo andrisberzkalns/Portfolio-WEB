@@ -1,12 +1,12 @@
 import React, { useContext, Suspense } from 'react';
-import { Locale, LocaleContext, getLocale } from '../../contexts/localization/LocaleProvider';
+import { Locale, LocaleContext, getLocale } from '../../contexts/localization';
 import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Logo from './Components/Logo';
 import GlitchEffect from '../../components/GlitchEffect';
+import Logo from './Components/Logo';
+import Typography from '@material-ui/core/Typography';
 
 const styles = (theme) => {
 
@@ -25,7 +25,7 @@ const styles = (theme) => {
             fontStyle: 'normal',
             fontWeight: 400,
             textTransform: 'uppercase',
-            marginTop: '4px'
+            marginTop: '-8px'
         },
         description: {
             color: "#ddd",
@@ -37,6 +37,7 @@ const styles = (theme) => {
         },
         background: {
             position: 'relative',
+            // backgroundColor: '#222',
             backgroundColor: 'rgba(20,20,20,0.75)',
             overflow: 'scroll',
             minHeight: '100vh',
@@ -187,7 +188,6 @@ const Home = ({classes}) => {
                             <Grid 
                                 item
                                 xs={12}
-                                // style={{paddingBottom: '20px'}}
                             >
                                 <Link to={"/" + language + '/contact'}>
                                     <Button 

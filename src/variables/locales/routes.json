@@ -1,0 +1,18 @@
+{
+    "lv": {
+        "/": "/",
+        "/projects": "/projekti",
+        "/work-experience": "/darba-pieredze",
+        "/education": "/izglītība",
+        "/contact": "/kontakti",
+        "/404": "/404"
+    },
+    "en": {
+        "/": "/",
+        "/projects": "/projects",
+        "/work-experience": "/work-experience",
+        "/education": "/education",
+        "/contact": "/contact",
+        "/404": "/404"
+    }
+}

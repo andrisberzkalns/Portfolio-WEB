@@ -1,10 +1,10 @@
 import React from "react";
 // import { MuiThemeProvider  } from "styled-components";
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import dark from './dark';
+import dark from '../../themes/dark';
 
-const Theme = ({ children }) => (
+const ThemeProvider = ({ children }) => (
   <MuiThemeProvider  theme={dark}>{children}</MuiThemeProvider >
 );
 
-export default Theme;
+export default ThemeProvider;
